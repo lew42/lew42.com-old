@@ -1,0 +1,357 @@
+@import "~less42/base.less";
+	// normalize, basic typography, mixins, and very basic helper classes
+
+@import "./local.less"
+	// base overrides, custom typography, mixins, etc
+
+
+
+There's really very little that should be defined outside of actual components...
+
+All layouts are just components... (grids, etc)
+
+
+
+OK, SO HOW DOES THIS WORK?
+- Vars/mixins need to be @imported
+- We need to be careful when requiring() .less
+- Maybe all require() statements that target a LESS module (a folder whose index.js requires a less file) should ONLY REQUIRE THE MIXINS?
+- That way, you can @import "~less42", and only get the mixins, without worrying about duplicate CSS
+
+OK - so... how about modules that need to require() less42, as actual output?
+We really need 2 different endpoints.  The mixins, and the actual styles.
+
+But, most modules could just be mixins?
+
+Or, could mostly be mixins...
+
+The process of having to instantiate the LESS might get a little tiresome:
+
+.my-mixin(){
+	
+}
+
+and later
+
+.my-mixin {
+	.my-mixin();
+}
+
+
+That's the best way to be able to reuse mixins across other LESS files, without worrying about how they're required.
+
+But, for many of my styles, I'm already building CSS rules from mixins, so it might not matter much.
+
+
+So let's say a specific page requires some less.
+1) That less file better be scoped, because there's only one css file
+2) That LESS file can @import mixins
+
+
+Modules/components should NOT re-require LESS?
+Actually, this is OK.  And might be handy.
+
+For example, if a component extends another, it might want to require() its deps' LESS.
+
+HERE'S THE THING:
+All CSS deps could be encapsulated in mixins?
+
+Sure, you could, but this comes down to the "embedded CSS rules" vs stacking them:
+
+.item.v2  vs  .item-v2
+
+I think either could work...
+It's all about workflow.  Performance is likely negligible tradeoff here (pros/cons to either choice).
+
+Consider the implementation:
+
+You're creating a new element, and it extends an existing element.  You probably want to keep the existing class (item?) and add your variant class (v2?).
+
+Instead of just embedding all the original css..
+
+
+
+BUT - minimize dependencies.
+Don't nest, when possible?
+
+If we have a robust CSS layout system, where we have atomic css classes we can add to an elements sub elements, in order to achieve the desired effect - then there's little need to create nested rules.
+
+But, you'll definitely want to have .element > .sub-element, in order to customize it.
+
+And frankly, we don't want to have to add a ton of atomic classes.  That's helpful for prototyping - kinda - but I think I'd rather prototype with LESS.
+
+So, we'll have something like:
+
+.element {
+	> .sub {
+		.layout-mixin-1(..);
+		.laout-mixin-2(..);
+		// layout overrides
+		// appearance styles
+	}
+}
+
+And, it's possible the entire styling is pre-defined, and we don't need anything more..
+
+Can we have nested mixins?  Don't think so...
+
+.element-template-1 {
+	> .sub {
+		
+	}
+}
+
+But, that shouldn't be a problem.  The mixins can just be rooted:
+
+.element-template-1() {}
+.element-template-1-sub() {}
+
+
+THE QUESTION REMAINS:
+Do we need to require() in addition to @import external CSS deps?
+
+We WILL be requiring local .less.  That's the only acceptable way.  So, we will have separate LESS compiling contexts.
+
+	And - ORDER MATTERS.  Can we write these decoupled modules to be standalone?
+	It shouldn't matter what reset has been used.  Sure, they'll look a little different...
+	It shouldn't matter what font is loaded.  Unless it requires font-awesome, or something.
+
+IF IT DOESN'T EMBED ALL ITS STYLES - IT HAS A REAL CSS DEPENDENCY
+This can be avoided - but doesn't have to be.  If you have a lot of variants/states, it doesn't make sense to swap out .item for .item-active.  Obviously...
+
+.item.active dependson .item.  You wouldn't decouple the active state..
+
+But, you might decouple a theme for the .item.  In which case, you might want the theme applied as a wrapper, or as a self-class.  
+
+.theme-id .item, .item.theme-id {
+	
+}
+
+In that case, the above styles would be in addition to the base .item styles.
+
+1) We could assume the user is requiring the item anyway, and so just assume the CSS will be there...
+
+Does the order matter?  If .item is defined before .item.theme, or after it?  I think specificity should beat order here.
+
+2) We could require() the item
+
+
+When extending a View, we'll be requiring the base View, and that base View will require it's own LESS.
+
+The extension will require it's own less also
+
+
+So, something like this:
+
+
+Item
+	require(./Item.less);
+		@import Item.mixins.less
+
+Item2 extends Item
+	require(Item)
+		require(Item.less)
+			@import Item.mixins.less
+	require(Item2.less)
+		@import Item.mixins.less
+
+These two LESS require context's would normally create duplicate output.
+
+Even if we're only using Item2, the Item's less will be imported.
+I think the order should be preserved here, but its hard to say.  If Item2 is required first, it should require Item before it's own LESS.
+
+YEP, that's important:
+
+require("Item"); // will add Item's css to the styles.css file BEFORE this css
+require("./this.less");
+
+
+Can be used for non-items...
+
+require("less42"); // require the base css
+require("this.less"); // then add this css
+
+But, again, the majority of the styling should be within modules.
+
+What's not within modules?
+- Fonts
+- resets
+- theming?
+
+I'm not sure how theming should work...
+
+Each item should really just be a wireframe, and the theming should then take over...
+
+There should be a theme.mixins.less that defines all the @primary and @secondary colors, and stuff.
+
+You could also define .primary-title-bar, .primary-btn, etc...
+
+Really, you can define whatever you want in the theme, and use them within the item's .less, by @importing the theme.mixins.less.
+
+How do we require/@import the themes?
+The items by themselves could come with a default theme.  In fact - the whole system should come with a default theme that prescribes minimal styles.
+
+Ok - so every item needs wireframe styles.
+1px padding.  3-5px border, which represents 0 space.
+
+Then, we can have a base theme that defines several very basic sizing and stylings.
+
+THE THEME IS AN INTERFACE - or a scheme, not a theme?
+The SCHEME just defines the variables that must be defined in order to work without error.  The Scheme file is a blank template, that probably just starts with near-wireframe styling.
+
+The problem is, the external modules can't import a local theme file.
+
+FOOK. But, I can, because I have a local node_modules folder.
+
+
+Ok, so less42/base is the reset and helpers
+@import "~theme/theme.less";
+// this will also include theme mixins, like @primary colors, and what not
+
+Then, each element/component will @import "~theme/theme.mixins.less" in order to use those colors/mixins.
+
+
+Should we scope the theme?  Probably - so we can have multiple themes loaded, and just switch a class.
+
+But, there should be base styling...
+
+.item, .item.default, .default .item, .default > .item { }
+
+And even:
+.default > * > * > .item // third child next...
+.default > * > .item.item.item // second child next
+.default > .item.item.item.item.item. // first child should take precedence 
+Just need to mess with specificity.  Peformance may vary.
+
+
+ with the > selector, the specificity should override the non > selector.  Basically, you could have
+	div.default
+		item
+		div.another
+			item
+			div.third
+				item
+
+And the > selector should take precedence, so you get the desired results.
+After that - if you don't have the theme on the direct parent, then who knows what will happen - it's based on order and specificity
+	
+Ok, so, we define the default style to take effect with no class, or with the .default override.
+
+
+
+How do we switch between themes?  Either add .wires to body, or.. ?
+
+Do we need a default theme?  Or just treat default as nothing, and add themes to adjust?
+
+Yea, that makes more sense - the naked class is the default.
+The wires theme can also be mandatory... But not sure if that really matters much - it's basically just a .wires class...
+
+Another hurdle:  ordering.
+
+So, we want to define some base stuff, then define some user-defined stuff, then define the core override classes at the end.
+
+I suppose we can still do that.  But, I'm not sure if you can just dump a mixin in the root - like
+
+.mixin();
+
+And have it unwrap its contents in place?
+
+So, instead of @import "~less42/overrides.less" at the end of the file, we can just import "~less42", and use the .overrides(); mixin at the bottom of the file?
+
+Maybe the @import is a little easier/clearer.
+
+
+
+
+Summary
+- @import "~theme" within components to have access to the default stuff
+
+Maybe we just need theme42 to be global, and then add overrides independently?
+
+So, there's 2 approaches there, too:
+1) Compile/output the base styling to CSS, and then add more CSS to override it.
+2) @import the base styling dynamically, so you can compile 1 set of styles, without needing to worry about specificity/order.
+
+If you need the base styling AND the custom styling to both be available, then you need to worry about overrides/specificity/order.
+
+If you only want to style a naked item, and only need 1 theme, then you can just define the default theme dynamically.
+
+
+
+IF EVERY VIEW IS SURE TO REQUIRE() ITS DEPS BEFORE REQUIRING ITS OWN STYLES, THEN WE'RE SURE TO INCLUDE THE CSS IN THE CORRECT ORDER.
+	require("Item"); --> requires("Item.less");
+	require("./Item2.less");
+
+Then it doesn't matter if Item2 is required first, or Item is required first, because either way, the Item.less will be pushed to CSS before Item2.less.
+
+
+Core + V2 ==> .item + .item.v2
+vs
+Core + V2 ==> .item (.item IS v2)
+vs
+Core + V2 ==> .item && .item-v2
+
+AND, you don't have to target the element specifically, it can be a child-targeting mixin, like a "> *" selector.
+So, .products could have a .grid mixin, for example.  You could either have div.products.grid, or just mix it in.
+
+If you're going to have div.products.list and div.products.grid, you could do div.products-grid and div.products-list, but if there's shared CSS between them, it might make more sense to stack the classes.
+
+But, if the .products div is only going to be a grid, you can optionally just embed the .grid styles in the .products class, and get rid of the .grid class entirely.  Again, minor difference, and it really doesn't matter.  But, you should be aware that there's an option.
+
+In the end, div.something.v1 ==> div.something.v2 is effectively the same as div.something-v1 ==> div.something-v2, with minor differences that shouldn't concern most users.  
+
+I think all three of these are viable use cases.  It really depends on what you need.
+
+Do you need to be able to remove a class?
+Do you need the styles to be standalone?  For many mixins, we don't want to stack classes (.pad1, .space2, etc);
+
+Create examples of these:
+
+.item.active
+.products.grid and/or .products.list (see above)
+.callout w/ embedded style-324 instead of .callout.style-324
+
+also
+
+.callout ==> + .style-324 vs .callout.my-callout (where my-callout adds your styles)
+	In this case, it's a framework/base system + pre-emptive/dynamic underrides.  
+
+The question is, can you build your base/framework system so that you have this option?  You basically need a global require("theme") to make this work.
+
+Can you have optional dependencies?  Like if (require(whatever)), then use it, if not, skip it?  Not sure on this.
+
+
+Also, you could expose CSS mixins:
+If an element is always a certain way, just embed it.
+If it needs a modifier, then that's cool.
+
+Sometimes, several unrelated elements might share the same base layout.  And, you might find you want to share a certain styling between them.  For example, a unique sizing (for padding, margins, etc);  
+
+These CSS mixins can be added to any item:
+.items.stacked
+.products.stacked
+etc...
+
+
+Eliminating the option of having the .base + .base.v2 is less attractive than having one pre-configured .base class.
+
+Basically, this is the framework/site problem:  .base is defined in the framework, and we want to customize it.  Instead of modifying the framework (which is possible...) we just create a secondary class .base2 or .another, and embed .base within it, to modify/override it...
+
+We can define styles as mixins, and then use those mixins in new definitions.. 
+
+
+This is the framework/site problem..  
+- Do we have base CSS?
+	- Is the base CSS dependent on anything?
+- Do we dynamically compile anything?
+- Do we have overrides?
+
+One approach:  An item just adds to the CSS output, effectively "overriding" with the old-school cascading effect.
+
+
+Hopefully most element styles will be mixins themselves, so that repeating styles will be a piece of cake.
+Can we "extend" a mixin?  Add something, remove something, etc?  Not sure...
+
+body.orange --> makes everything orange themed
+item.blue --> makes item blue
+container.purple --> hopefull makes all/most items within purple

@@ -1,0 +1,1 @@
+module.exports = '<svg class="lew42-logo" viewBox="0 0 347 140"><use xlink:href="#lew-logo-w" class="w"></use><use xlink:href="#lew-logo-e" class="e"></use><use xlink:href="#lew-logo-l" class="l"></use></svg>';

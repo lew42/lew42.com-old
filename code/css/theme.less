@@ -1,0 +1,476 @@
+@import "~prismjs/themes/prism-tomorrow.css";
+
+@orange: #ff6b00;
+@yorange: #ff9d00;
+@rorange: #ff3700;
+
+a, a:visited {
+	color: @orange;
+}
+
+a:hover {
+	color: @rorange;
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	overflow-x: hidden;
+}
+
+
+body {
+	background-color: #131313;
+	background-image: url("/img/bg-pixels.png");
+}
+
+html {
+	overflow-y: scroll; /* makes scrollbar permanent */
+}
+
+article {
+	margin: 1em 0;
+}
+
+li {
+	margin-bottom: 0.5em;
+}
+
+blockquote {
+	padding-left: 1em;
+	border-left: 0.3em solid #ccc;
+	color: #666;
+}
+
+main {
+	flex: 1;
+}
+
+#app > header {
+
+	// margin-top: 1rem;
+	background: #272727;
+	.linear-shade(0.1, 0.1);
+	box-shadow: 0px 0px 1em rgba(0,0,0,0.25);
+	position: relative;
+	z-index: 100;
+
+	.inner {
+		display: flex;
+
+		@media (min-width: 1175px){
+			border-right: 1px solid rgba(255,255,255, 0.05);
+		}
+	}
+
+	/*
+	Even though preprocessors make it easy (convenient?) to nest styles like this, it makes it a pain in the ass to reuse.  If all styles are flattened, so there's no parent / wrapper dependency, it makes it much easier, in some ways.
+	*/
+	.logo-wrap {
+		padding: 0.85em 1.2em;
+		padding-left: 0em;
+		cursor: pointer;
+		position: relative;
+		
+		@media (max-width: 1174px){
+			padding-left: 1.2em;
+		}
+	}
+	.lew42-logo {
+		width:3.5em;
+
+	}
+
+	nav {
+		margin-left: auto;
+		color: #ddd;
+		display: flex;
+		// .shade(0.1, 0.1);
+		// .linear-shade(0.1, 0.1);
+		text-shadow:1px 1px 1px black;
+		cursor: pointer;
+		justify-content: center;
+		text-align: center;
+		border-left: 1px solid rgba(0,0,0,0.5);
+		> * {
+			color: #ddd;
+			flex: 1;
+			// font-weight: 900;
+			text-transform: uppercase;
+			.l-sep(0.05);
+			.r-sep(0.5);
+			font-size: 0.9em;
+			padding: 1.2em;
+
+			@media (max-width: 400px){
+				padding-left: 1em;
+				padding-right: 1em;
+			}
+			// .radial-shade(0.05);
+			&:hover {
+				color: @orange;
+			}
+		}
+
+		> a {
+			@media (max-width: 400px){
+				display: none;
+			}
+		}
+
+	}
+
+	nav, .logo-wrap {
+		@media (max-width: 803px){
+			font-size: 1.25em;
+		}
+	}
+}
+
+.page.page {
+	@media (min-width: 1175px){
+		margin-top: 2rem;
+	}
+	&.flush {
+		margin-top: 0;
+	}
+}
+
+.banner {
+	box-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+	position: relative;
+	z-index: 3;
+	.inner {
+		padding: 3em 2.5rem 1em;
+	}
+	> .inner-bg {
+		transform: perspective(500px) rotateX(-2deg) rotateZ(-0.5deg) scale(1.05);
+		margin: -1em 0;
+		box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+		border-radius: 3px;
+	}
+}
+
+.page .banner + .paper {
+	padding-top: 4em;
+}
+
+.lew42-logo {
+		// filter: drop-shadow(0px 0.5em 1em black);
+		max-width: 100%;
+		transform: scaleY(0.8);
+		.l { fill: @yorange; }
+		.e { fill: @orange; }
+		.w { fill: @rorange; }
+}
+
+.bg-orange {
+	background-color: @orange;
+}
+
+.bg-yorange {
+	background-color: @yorange;
+}
+
+.bg-rorange {
+	background-color: @rorange;
+}
+
+.orange {
+	color: @orange;
+}
+
+.yorange {
+	color: @yorange;
+}
+
+.rorange {
+	color: @rorange;
+}
+
+.paper {
+	background: white;
+	.linear-shade(0.1, 0.1);
+	padding: 2em 3rem;
+}
+
+.page {
+	> section {
+		&:extend(.global-squeeze);
+	}
+	> .paper {			
+		padding: 3em 2.5rem;
+	}
+}
+
+.content-squeeze {
+	max-width: 42em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+footer.main {
+	background: #222;
+	color: #aaa;
+	padding: 2em 3.5rem;
+	box-shadow: 0px 0px 1em rgba(0,0,0,0.5);
+}
+
+
+
+
+
+/* TYPOGRAPHY */
+
+.intro {
+	font-size: 1.5em;
+	color: #999;
+}
+
+.thin {
+	font-weight: 100;
+}
+
+.white {
+	color: white;
+}
+
+.text-shadow {
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+
+.bg-orange + .paper {
+	padding-top: 4%;
+}
+
+
+/* SECTIONS */
+
+.llh {
+	text-align:center;
+	background: @orange;
+	&:extend(.giga-squeeze);
+	position: relative;
+	z-index: 5;
+	box-shadow: 0px 0.25rem 2rem rgba(0, 0, 0, 0.25);
+	> * {
+		padding: 1.5em 3em 1.7em;
+		.radial-shade(0.1);
+		cursor: pointer;
+		&:hover {
+			.radial-shade(0.2);
+		}
+		// @media (min-width: 20em){
+		// 	min-width: 15em;
+		// }
+		&:nth-child(n){
+			.bg-yorange;
+		}
+		&:nth-child(2n){
+			.bg-orange;
+		}
+		&:nth-child(3n){
+			.bg-rorange;
+		}
+		> h2 {
+			.tt-u;
+			font-size: 2em;
+			.thin;
+			.white;
+			text-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+		}
+	}
+}
+
+.margin-fix {
+	&:first-child { margin-top: 0; }
+	&:last-child { margin-bottom: 0; }
+}
+
+.nuts {
+	main > .page > &.paper {
+		padding-top: 5em;
+	}
+	background-color:#e2e2e2;
+	.auto-grid {
+		margin-top: 2em;
+		margin-left: -1rem;
+		margin-right: -1rem;
+		justify-content: center;
+		> * {
+			// @media (max-width: 500px){
+			// 	flex-basis: 100%;
+			// }
+			// @media (min-width: 500px){
+			// 	min-width: 300px;
+			// }
+			.flex-basis(17em);
+			padding: 0 1rem;
+			margin-bottom: 2rem;
+		}
+		> * > * {
+			position: relative;
+			cursor: pointer;
+			padding: 1em 1.2em;
+			background-color: #fff;
+			box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+			.radial-shade(0.1);
+			margin: 2rem 0;
+			.margin-fix;
+			&:last-child {}
+			h3 {
+				// .tt-u;
+				.thin;
+				font-size: 1.25em;
+			}
+			&:hover {
+				top: -2px;
+				left: -2px;
+				box-shadow: 6px 6px 12px rgba(0,0,0,0.1);
+			}
+		}
+	}
+}
+
+.split-wrap&:extend(.global-squeeze) {
+	overflow-x: hidden;
+	padding-bottom: 5em;
+	margin-bottom: -5em;
+	position: relative;
+	z-index: 4;
+}
+.split {
+	transform: rotate(-1deg) scaleX(1.03) scaleY(1.1);
+	position: relative;
+	z-index: 4;
+	main .page &.paper {
+		color: white;
+		background-color: #333;
+		padding: 4em 3rem;
+	}
+	.auto-grid {
+		transform: rotate(1deg) scaleY(0.919191) scaleX(0.971);
+		margin: -1rem -1.2rem;
+		> * {
+			.flex-basis(15em);
+			padding: 1rem 1.2rem;
+			// @media (max-width: 500px){
+			// 	flex-basis: 100%;
+			// }
+			color: #ddd;
+			margin-bottom: 1em;
+			.margin-fix;
+			h3 {
+				// .thin;
+				font-weight: 900;
+				text-transform: uppercase;
+				text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+				.header-size(1.5);
+				color: white;
+			}
+		}
+	}
+}
+
+.split-fire {
+	&& {
+		margin-bottom: 5em;
+	}
+	.dark-card {
+		padding: 2em 3em 2em;
+		flex-basis: 25em;
+	}
+	.right {
+		flex-basis: 25em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: rotate(1deg) scaleX(1.03) scaleY(1.1) translateY(0px) translateX(0em);
+		// text-align: center;
+		.inner {
+			transform: rotate(-1deg) scaleY(0.9091) scaleX(0.9709) translateX(0em);
+			padding: 2em 3em;
+			max-width: 60em; // takes effect at very large width (1700 px)... 
+		}
+		color: white;
+		.bg-fire();
+		h3 {
+			.thin;
+			.white;
+			font-size: 2em;
+		}
+		.cta {
+			background: #333;
+			color: white;
+			.ff-v;
+			font-weight: bold;
+			display: inline-block;
+			padding: 8px 16px;
+			font-size: 0.7em;
+			border-radius: 4px;
+			text-transform: uppercase;
+			cursor:pointer;
+		}
+	}
+}
+
+.style-1 {
+	h3 {
+		font-size: 2em;
+		.thin;
+	}
+}
+
+.text-shadow {
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+}
+
+.sitemap-items {
+
+}
+.sitemap-item {
+	margin: 0.5rem;
+	padding: 0.5rem 0.6rem;
+	background: #ccc;
+	cursor: pointer;
+}
+
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,0,0.9);
+	z-index: 99999;
+	> .inner {
+		height: 100%;
+		display: flex;
+		justify-content: flex-end;
+		text-align: right;
+		> nav {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			font-size: 2.75em;
+			padding: 1em;
+			> * {
+				cursor: pointer;
+				color: #ddd;
+				text-transform: uppercase;
+				font-weight: 900;
+				.v-sep();
+				padding: 1rem 0;
+				&:hover {
+					color: white;
+				}
+			}
+		}
+	}
+}

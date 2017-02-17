@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 347 140">
+<defs>
+	<filter id="dropshadow" height="130%">
+	  <feGaussianBlur in="SourceAlpha" stdDeviation="5"/> 
+	  <!-- <feOffset dx="2" dy="2" result="offsetblur"/> -->
+	  <feComponentTransfer>
+	    <feFuncA type="linear" slope="0.8"/>
+	  </feComponentTransfer>
+	  <feMerge> 
+	    <feMergeNode/>
+	    <feMergeNode in="SourceGraphic"/> 
+	  </feMerge>
+	</filter>
+</defs>
+<g id="lewlogo">
+	<g id="lew-logo-w">
+		<polygon points="249.44,139 208.109,139 177.587,0 218.918,0" />
+		<polygon points="313.848,139 272.517,139 239.538,21 280.869,21" />
+		<polygon points="272.517,139 313.848,139 347,0 305.668,0" />
+		<polygon points="208.744,139 250.076,139 280.869,21 239.538,21" />
+	</g>
+	<g id="lew-logo-e">
+		<polygon points="185.059,87 88.974,87 83.712,52 188.762,52" />
+		<polygon points="184.288,139 134.771,139 88.355,98 188.09,98" />
+		<polygon points="134.771,139 88.355,98 81.285,41 118.105,0" />
+		<polygon points="185.934,41 81.285,41 118.105,0 190.377,0" />
+	</g>
+	<g id="lew-logo-l">
+		<polygon points="110.495,139 59.771,139 13.011,98 105.667,98" />
+		<polygon points="59.771,139.128 13.011,98.191 0,0 41.332,0" />
+	</g>
+</g>
+</svg>

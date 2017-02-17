@@ -1,0 +1,40 @@
+@import (reference) "~less42/base.less";
+@import (reference) "background.less";
+
+.style-1 {
+	.bg-radial-dark2(0.05)
+}
+
+
+.layout-test-page {
+	background: #efefef;
+	padding: 1em 0;
+
+	.layoutTest {
+		background: white;
+		margin: 1em;
+		.grid {
+			> * {
+				.bga-dark(0.2);
+				box-shadow: 1px 1px 1px rgba(0,0,0,0.1), inset 1px 1px 1px rgba(255, 255, 255, 0.25), inset -1px -1px 1px rgba(0, 0, 0, 0.25);
+				.bg-radial-dark2(0.05);
+			}
+		}
+	}
+
+	.controls {
+		display: flex;
+		> * {
+			padding: 0.25em 0.5em;
+			margin-right: 0.5em;
+			background: #eee;
+		}
+	}
+
+	.viz {
+		* {
+			background: rgba(0,0,0,0.1);
+			box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.25), inset -1px -1px 1px rgba(0, 0, 0, 0.25);
+		}
+	}
+}

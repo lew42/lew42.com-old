@@ -1,0 +1,536 @@
+@import (reference) "~less42/base.less";
+
+.app2, .background-page {
+	min-height: 100%;
+}
+
+
+.background-page {
+	padding-top: 1px;
+	.pad-c > * {
+		padding: 1em 1.25em 1.5em;
+	}
+}
+
+.bg-radial-dark2(@alpha){
+	background-image: radial-gradient(ellipse at top left, rgba(255,255,255,@alpha) 50%, rgba(0,0,0,@alpha) 100%);
+}
+
+.bg-radial-dark(@alpah){
+	background: radial-gradient(ellipse to )
+}
+
+
+
+.background-page {
+	position: relative;
+	> .inner {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: -5000;
+
+		// .bg-radial-dark2(0.15)
+	}
+}
+
+.s-one {
+	.h1(){
+		font-weight: 100;
+		font-family: "Open Sans";
+		text-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+	}
+	> * {
+		// .bga-dark(0.1);
+		background-color:#ff9d00;
+		&:nth-child(2n){
+			background-color: #ff6b00;
+		}
+		&:nth-child(3n){
+			background-color: #ff3700;
+		}
+		.bg-radial-dark2(0.1);
+		color: #fff;
+		padding: 1em 1.5em 1.5em;
+		h1 {
+			.h1();
+		}
+	}
+}
+
+.s-two {
+	padding: 5% 10%;
+	background: #555;
+	// .bg-radial-dark2(0.1);
+	box-shadow: inset 15px 10px 25px rgba(0,0,0,0.25);
+	color: #f2f2f2;
+	overflow: auto;
+	> * {
+		// text-align: center;
+		.icon {
+
+		}
+		h3 {
+			.s-one.h1();
+			text-transform: uppercase;
+			margin: 1rem 0;
+			font-size: 1.5em;
+		}
+	}
+	> .grid {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		> * {
+			// .bg-radial-dark2(0.1);
+			position: relative;
+			z-index: 1;
+		}
+	}
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	width: 85%;
+	.pad, .pad-c > * {
+		// padding: 0.9em
+	}
+}
+
+.p-centered {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.s-three {
+	padding: 5% 20%;
+	background: #fff;
+}
+
+.dark-card {
+	padding: 1em 1.5em 1.5em;
+	background:#333;
+	h3 {
+		text-transform: uppercase;
+		font-size: 2.25em;
+		margin: 0;
+	}
+	/* Use .first and .second, rather than .orange and .white.  Perfect example is here, when I've used those classes a dozen times (very not-DRY code), and don't want to go and replace them all.  So, I ended up making the .white class actually orange, and vice versa.
+
+	Even better - don't use .first and .second, but use .first-of-type, and .nth-of-type.  That way, you can just slap some headers in there, and they'll automatically appear correctly.
+
+	The .orange and .white should be overrides for COLOR only, not font-sizing, weight, or anything else... 
+
+	And still, if you can use CSS to override with an nth-of-type selector, that would be better than adding a CSS class, so you don't have to manage styling in two places. */
+	h3.white {
+		color: #ff5400;
+		font-weight: 100;
+		font-size: 1.5em;
+	}
+	h3.orange {
+		color: white;
+		margin-top: 0.2em;
+	}
+	.btn {
+		margin-top: 1em;
+		padding: 0.4em 0.6em;
+		background: #ff5800;
+		color: white;
+		display: inline-block;
+	}
+}
+
+.s-four {
+	.bg-fire();
+}
+
+.tar {
+	text-align: right;
+}
+
+.s-five {
+	margin-bottom: 5em;
+	.dark-card {
+		padding: 2em 3em 2em;
+	}
+	.right {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: rotate(1deg) scaleX(1.03) scaleY(1.1) translateY(0px) translateX(0em);
+		// text-align: center;
+		.inner {
+			transform: rotate(-1deg) scaleY(0.9091) scaleX(0.9709) translateX(0em);
+			padding: 2em 3em;
+			max-width: 60em; // takes effect at very large width (1700 px)... 
+		}
+		color: white;
+		.bg-fire();
+		h3 {
+			.s-one.h1();
+			font-size: 2em;
+		}
+		.cta {
+			background: #333;
+			color: white;
+			.ff-v;
+			font-weight: bold;
+			display: inline-block;
+			padding: 8px 16px;
+			font-size: 0.7em;
+			border-radius: 4px;
+			text-transform: uppercase;
+		}
+	}
+}
+
+
+.dummy-spacer {
+	min-height: 100em;
+}
+
+
+.tools-page {
+
+}
+
+.test-center-grid {
+	> * {
+		padding: 2em !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction:column;
+	}
+	h1 { margin: 0;}
+	.yo {
+		align-self: flex-end;
+	}
+}
+
+.controls {
+	display: flex;
+	> * {
+		padding: 0.25em 0.5em;
+		margin-right: 0.5em;
+		background: #eee;
+	}
+}
+
+.s-six {
+	background: #ddd;
+	margin-bottom: 3em;
+	.grid > * {
+		background: #fff;
+		padding: 2em 2.5em;
+		.bg-radial-dark2(0.1);
+		&:nth-child(3n){
+			.bg-fire();
+		}
+		&:nth-child(3n+1){
+			background-color: #555;
+		}
+		box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+	}
+}
+
+.flex.break {
+	display: block;
+}
+
+.s-seven {
+	.s-five;
+	.dark-card {
+		flex-grow: 1;
+	}
+}
+
+.s-eight {
+	.s-five;
+	.right {
+		min-width: 24em;
+	}
+	.second-dark-card {
+		text-align: right;
+	}
+}
+
+
+
+// p, h1, h2, h3, h4, h5, h6 {
+// 	max-width: 45em;
+// }
+
+
+.s-nine {
+	margin: 4% 0;
+	> .inner {
+		padding: 2% 3%;
+		max-width: 80em;
+		background:#fff;
+		min-height:10em;
+		margin: 0 auto;
+	}
+}
+
+.s-ten {
+	margin: 4% 2%;
+	background: #fff;
+	max-width: 80em;
+	min-height: 10em;
+	padding: 2% 3%;
+}
+
+.jumbo-squeeze {
+	max-width: 80em;
+	margin: 4% auto;
+}
+
+.jumbo-squeeze2 {
+	max-width: 60em;
+	margin: 4% auto;
+}
+
+.jumbo-squeeze3 {
+	max-width: 50em;
+	margin: 4% auto;
+}
+
+.s-11 {
+	padding: 1px 0;
+	// background: rgba(255,255,255, 0.25);
+	// border: 10px solid black;
+	> * {
+		padding: 1.5em 2em 2em;
+		background: #fff;
+		box-shadow: 5px 5px 15px rgba(0,0,0,0.25);
+	}
+
+	.grid-dark {
+		
+		> * {
+			border-left: 30px solid #1b1231;
+			box-shadow: 
+						1px 1px 0px #333, 
+						2px 2px 0px #555, 
+						3px 3px 0px #777, 
+						4px 4px 0px #999,
+						5px 5px 0px #bbb,
+						6px 6px 0px #ddd;
+			padding: 1em 1.5em 1.5em;
+			background: #2a1f46;
+			.bg-radial-dark2(0.1);
+			color: white;
+			h1 {
+				color: #d0bcff;
+				font-weight: 100;
+				font-size: 1.5em;
+				text-transform: uppercase;
+			}
+		}
+	}
+}
+
+.s-12 {
+	text-align: center;
+	.grid {
+		text-align: left;
+	}
+	.inner {
+		padding: 3% 3.5%;
+	}
+}
+
+.wrap-11 {
+	padding: 1px 0;
+	// .bg-fire();
+	background: #443665;
+	.bg-radial-dark2(0.2);
+}
+
+.wrap-13 {
+
+	.s-13 {
+		margin-top: 5em;
+	}
+
+}
+
+.golden-padding {
+	padding: 1.618034/1.5rem 1.618034*1.1rem 1.618034*1.1rem;
+}
+
+// .paper {
+// 	background: white;
+// 	box-shadow: 3/16rem 3/16rem 6/16rem rgba(0,0,0,0.25);
+// 	.golden-padding;
+// }
+
+.radial {
+	.bg-radial-dark2(0.2);
+}
+
+
+
+.wrap {
+	.stack-0;
+}
+.squeeze-c {
+	> * {
+		.squeeze-test-1;
+	}
+	&.large {
+		> * {
+			max-width: 100em;
+		}
+	}
+}
+
+.squeeze-test-1 {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 80em;
+
+}
+
+.squeeze-test-2 {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 80em;
+	width: 94%; // equivalent of 3% padding
+}
+
+.contain {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.squeeze-test-3-wrap {
+	background-color: teal;
+	.bg-radial-dark2(0.2);
+	padding: 2rem;
+	/* Using a mix of padding allows us to keep % widths on the sides, which is nearly identical to rems, except it gets too big at really large widths.  BUT, when we do a squeeze, we limit the max-width, so it doesn't matter if it has gargantuan side padding (unless you want to do a right/left align :( */
+}
+
+.squeeze-test-3 {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 80em;
+}
+
+.grid-with-items {
+	> * {
+		display: flex;
+
+		&:nth-child(3n+1) > * {
+			margin-left: 0;
+		}
+		&:nth-child(3n) > * {
+			margin-right: 0;
+		}
+		&:nth-child(1), &:nth-child(2), &:nth-child(3) {
+			& > * {
+				margin-top: 0;
+			}
+		}
+		&:nth-last-child(1), &:nth-last-child(2), &:nth-last-child(3) {
+			display: block;
+			> * { margin-bottom: 0;  }
+		}
+
+		> * {
+			flex: 1;
+			padding: 1rem;
+			margin: 1rem;
+			background: #fff;
+
+
+		}
+	}
+}
+
+.grid-with-items-2 {
+	> * {
+		display: flex;
+		padding: 1em;
+
+		&:nth-child(3n+1) {
+			padding-left: 0;
+		}
+		&:nth-child(3n) {
+			padding-right: 0;
+		}
+		&:nth-child(1), &:nth-child(2), &:nth-child(3) {
+			// & > * {
+				padding-top: 0;
+			// }
+		}
+		&:nth-last-child(1), &:nth-last-child(2), &:nth-last-child(3) {
+			// display: block;
+			// > * {
+			 padding-bottom: 0;
+			   // }
+		}
+
+		&:nth-last-child(3):nth-child(3n-1){
+			padding-bottom: 1em;
+		}
+
+		&:nth-last-child(2):nth-child(3n){
+			padding-bottom: 1em;
+		}
+
+		&:nth-last-child(3):nth-child(3n){
+			padding-bottom: 1em;
+		}
+
+		> * {
+			flex: 1;
+			padding: 1rem;
+			background: #fff;
+
+
+		}
+	}
+}
+
+.s-14 {
+	padding: 2rem;
+}
+
+.s-15 {
+	background: #333;
+	.logo-wrap {
+		max-width: 30em;
+		// background:#191919;
+		position: relative;
+		padding: 1.5rem 3rem 3rem;
+		.inner-bg {
+			background: #191919;
+			position: absolute;
+			top: 0; bottom: 0; left: 0; right: 0;
+			transform: perspective( 600px ) rotateX(-20deg);
+			border-bottom: 8rem solid #0e0e0e;
+			box-shadow: 0px 2rem 5rem;
+		}
+	}
+	.logo {
+		position: relative;
+		z-index: 1;
+		display: block;
+		.l { fill: #ff9d00; }
+		.e { fill: #ff6b00; }
+		.w { fill: #ff3700; }
+
+	}
+	&.flip {
+		.logo-wrap {
+			transform: perspective( 600px ) rotateX(-15deg)
+		}
+		.logo {
+			transform: perspective( 600px ) rotateX(15deg)
+		}
+	}
+}

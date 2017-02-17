@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 446 260">
+  
+  <defs xmlns="http://www.w3.org/2000/svg">
+    <filter id="dropshadow" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/> 
+      <!-- <feOffset dx="2" dy="2" result="offsetblur"/> -->
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.8"/>
+      </feComponentTransfer>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+    <g id="lewlogo">
+    <g class="w" >
+      <!-- fill="#e83d21" -->
+      <polygon points="294.44,200 253.109,200 222.587,61 263.918,61" filter="url(#dropshadow)" />
+      <polygon points="358.848,200 317.517,200 284.538,82 325.869,82" filter="url(#dropshadow)" />
+      <polygon points="317.517,200 358.848,200 392,61 350.668,61" filter="url(#dropshadow)" />
+      <polygon points="253.744,200 295.076,200 325.869,82 284.538,82" filter="url(#dropshadow)" />
+    </g>
+    <g class="e">
+      <!--  fill="#ea6a2a" -->
+      <polygon points="240.059,151 143.974,151 138.712,110 243.762,110" filter="url(#dropshadow)" />
+      <polygon points="239.288,200 189.771,200 143.355,159 243.09,159" filter="url(#dropshadow)" />
+      <polygon points="189.771,200 143.355,159 136.285,102 173.105,61" filter="url(#dropshadow)" />
+      <polygon points="240.934,102 136.285,102 173.105,61 245.377,61" filter="url(#dropshadow)" />
+    </g>
+    <g class="l" fill="#fbb03b">
+      <polygon points="176.495,200 125.771,200 79.011,159 171.667,159" filter="url(#dropshadow)" />
+      <polygon points="125.771,200.128 79.011,159.191 66,61 107.332,61" filter="url(#dropshadow)" />
+    </g>
+  </g>
+</svg>
