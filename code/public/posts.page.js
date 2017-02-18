@@ -65,6 +65,12 @@ module.exports = Page({
 			P("The version system I'm using now, while quite redundant in all the extra module.export index files, does provide a benefit:  you can easily create an alternate version, either at the root package level, or at the ")
 		});
 
+		Sect(function(){
+			H5("Course: OOP with JavaScript - the easy way");
+			P("Class vs method:  Use constructs/settings instead of arguments.  Mfn let's you do so with a single method, without any additional wrapper code.");
+			P("There's the perfect logical progression to learn the Base -> Mfn -> Set").addClass("fw-b");
+		});
+
 
 		Sect(function(){
 			H5("The Future of Version Control");
@@ -87,6 +93,30 @@ module.exports = Page({
 		Sect(function(){
 			H5("Safari and the damn flex-basis thing...");
 			P("flex: 1; was working really well.  Little did I know that this resets flex-basis from default of 'auto' to 0.  But not on Safari.  Safari leaves it at its default of auto.  So yea, don't use flex: 1;  Make sure to set flex: 1 1 auto; or flex-grow: 1;");
+		});
+
+		Sect(function(){
+			H5("Optimal Workflow with Workspaces");
+			P("Getting 'live' persistence is kind of nice.  I don't think you can do this with preprocessed CSS, though...  The live edits don't work through sourcemaps.  I wonder if this could be fixed with a Chrome Dev Tools extension.");
+			P("Anyway, - it might be better that it doesn't persist.  When you're testing stuff out, you would need a way to revert...")
+		});
+
+		Sect(function(){
+			H5("Unicorns Hiding in Plain Sight");
+			P("There are literally a billion unicorns hiding in the realm of software development alone.  Dev is so bad right now, it hurts.");
+			P("How about a realtime, version controlled templating system?");
+			P("How about an internet-based hardware store that actually helps you?");
+			P("How about an amazon that updates its user interface more than never?");
+			P("How about an email GUI that updates its user interface more than never?");
+			P("How about a scalable, realtime CMS that's easy to learn and has a massive community?");
+			P("How about a clothing design-->manufacture system that uses CNC to expedite iteration and ensure 100% consistency?");
+			P("How about a medical diagnosis system, somewhat like WebMD, that uses real data and follow ups to expediate triage?");
+			P("How about an education system that actually works?  Like Udacity, only faster, better, stronger.");
+			P("How about an operating system that people actually contribute to?  Linux is only 1% of the ideal solution.");
+			P("How about a 3D modeling, animation, and interaction platform that's easy to learn and use, and that anyone can contribute to?  Unity, you're only 1% of the ideal solution.");			
+			P("How about a word database?  Scan text, and identify word counts, frequencies, proximities to other words, etc.  There's SO MUCH data that can be derived from existing information, just based on intelligently looking at it.");
+
+
 		});
 
 
