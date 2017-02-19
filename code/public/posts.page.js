@@ -27,6 +27,15 @@ module.exports = Page({
 
 
 		Sect(function(){
+			H5("Big picture thinking can lead you around the obstacle");
+			P("So many times there's an alternative solution to our problem that completely eliminates the need to solve our current problem.  This may seem obvious and common sense.  There's one situation in which its less obvious:");
+			P("When the alternative path isn't a direct solution to your problem.  Let's say you're trying to get a certain process to work in some edge case.  It works most of the time, but you've ran into a situation in which you need to find a work-around.  You mull over your code, think about alternative solutions, and none of them are elegant or simple.");
+			P("Sometimes I spend a ton of time digging into one of these problems.  These are the worst kind to waste time on.  They only apply some of the time, and might be avoided entirely by a different strategy.");
+			P("That's the idea here - if you think from a bigger perspective, you might find a way to completely bypass your problem.");
+		});
+
+
+		Sect(function(){
 			H5("Constructor Helpers");
 			P("Class.helper() --> makes a new class with some help.  Could export a property of the new instance, so you don't have to use Class().whatever all the time.  Could configure a property, so you don't have to.");
 			Blockquote("new this(o).fn, or new this({}, o); works");
@@ -116,9 +125,49 @@ module.exports = Page({
 			P("How about a 3D modeling, animation, and interaction platform that's easy to learn and use, and that anyone can contribute to?  Unity, you're only 1% of the ideal solution.");			
 			P("How about a word database?  Scan text, and identify word counts, frequencies, proximities to other words, etc.  There's SO MUCH data that can be derived from existing information, just based on intelligently looking at it.");
 
+		});
+
+
+		Sect(function(){
+			H5("The 2 branch workflow");
+			P("Only master branches.  One locally, one on GitHub.  This is as basic as it gits.  If you ONLY have 2 clones, this can work, because you're only editing one.");
+			H5("The 3 branch workflows:  Inadequate to really address the problem");
+			P("You HAVE to update your branch before you can push (you can't push to a branch that's ahead of yours).")
+			H5("The 4 branch workflow:  master + dev");
+			P("You clone to master.  But you shouldn't work on master.  You branch to dev.  You shouldn't push to GitHub's master.  You should push dev to dev.");
+			P("If there are other changes to the branch you're working on, do you pull those in before committing yours?  Or do the merging on GitHub?");
+		});
+
+		Sect(function(){
+			H5("Why home reno is so awesome");
+			P("You should do it now, not when you need to sell.  And do it NOW especially when you might need to sell.  Because you definitely should do it once you need to sell.");
+			P("Here's why.  1) Pay $1000 for a few quick fixes, like painting cabinets, walls, fixing trim, etc, and quickly get $2-5k bump in value.");
+			P("But, there's more to it than the appraised value, listing price, or final sales price.  There's the perceived value that's less tangible.");
+			P("When your house looks nice, and buyers want to live there, then you'll get more walk throughs, more offers, and that leads to a faster sale, and higher prices.");
+			P("As long as you're not losing money on the reno, it's a win-win.  Maybe a win-win-win.  You get a nicer place to live in.  You sell your house faster.  You get the money back.");
+			P("If you take out a loan, then you don't even need the money.  Sure, you'll make a few payments, pay some interest.  But you can get all this back (and sometimes more) when you sell.");
+			P("If you take out a loan, you'll get to live in a nicer place, and it'll drive your value up substantially.");
+
+			P("Precautions:  don't over-invest.  Your neighborhood can only support so much value, and borrowers (appraisers) will have a hard time substantiating that value, when you go to sell.");
+		});
+
+		Sect(function(){
+			H5("Video Posts");
+			P("Record audio/video.");
+			P("Important: record screencasts separately from narration?  Well, maybe not.  Recording in real-time, in the moment, might yield better results, than recording a voice over.");
+			P("Yet, some people are really good at voice overs.  Maybe I can practice and get good at it.");
+
+			P("Then, you have 2 options:  write a post/script, and record a video that animates/exemplifies that post/script.  Or, make a video and record the narration for it, and then transcribe the narrative to a post.");
 
 		});
 
+
+		Sect(function(){
+			H5("Log statements are an art - and more important than comments");
+			P("Comments are important, but log statements show you actual data.");
+			P("I definitely think a business could be made out of logging JavaScripts.");
+			P("I definitely think the skill of making quality log statements is imperative to code quality, meaningfulness, sharing, and ultimately the ability of others to understand what's going on, and solve the problems at pant.");
+		});
 
 	}
 });
